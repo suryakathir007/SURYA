@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+int main() 
+{
+    int a, b;
+    if (scanf("%d %d", &a, &b) != 2) 
+{
+        fprintf(stderr, "Error reading input.\n");
+        return 1;
+}
+    char labels[11][6] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "even", "odd"};
+    int labels_index;
+    for (int i = a; i <= b; i++)
+{
+        if (i >= 1 && i <= 9)
+{
+            labels_index = i - 1;
+            printf("%s\n", labels[labels_index]);
+} 
+else 
+{
+            labels_index = 9 + abs(i) % 2;
+            printf("%s\n", labels[labels_index]);
+}
+}
+    return 0;
+}
