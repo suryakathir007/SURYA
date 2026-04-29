@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+    float totalMass, cumulativeRetained = 0;
+    printf("Enter number of sieves: ");
+    scanf("%d", &n);
+    printf("Enter total initial mass of soil (g): ");
+    scanf("%f", &totalMass);
+
+    float retained[n];
+    for(int i = 0; i < n; i++) {
+        printf("Mass retained on Sieve %d (g): ", i + 1);
+        scanf("%f", &retained[i]);
+    }
+
+    printf("\nSieve\t%% Passing\n");
+    for(int i = 0; i < n; i++) {
+        cumulativeRetained += retained[i];
+        float percentPassing = ((totalMass - cumulativeRetained) / totalMass) * 100;
+        printf("%d\t%.2f%%\n", i + 1, percentPassing);
+    }
+    return 0;
+}
