@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float n, R, S, V, A, Q;
+    printf("Enter Manning's Roughness (n): ");
+    scanf("%f", &n);
+    printf("Enter Hydraulic Radius (R) in meters: ");
+    scanf("%f", &R);
+    printf("Enter Bed Slope (S) (e.g., 0.001): ");
+    scanf("%f", &S);
+    printf("Enter Cross-sectional Area (A) (m2): ");
+    scanf("%f", &A);
+
+    V = (1.0 / n) * pow(R, (2.0/3.0)) * sqrt(S);
+    Q = A * V;
+
+    printf("\nFlow Velocity: %.3f m/s\n", V);
+    printf("Total Discharge (Q): %.3f m^3/s\n", Q);
+    return 0;
+}
