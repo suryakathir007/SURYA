@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    float D1, D2, P, BOD;
+    printf("Initial Dissolved Oxygen (mg/L): ");
+    scanf("%f", &D1);
+    printf("Final Dissolved Oxygen (after 5 days): ");
+    scanf("%f", &D2);
+    printf("Dilution Fraction (P) (e.g., 0.02 for 2%%): ");
+    scanf("%f", &P);
+
+    BOD = (D1 - D2) / P;
+
+    printf("BOD of wastewater: %.2f mg/L\n", BOD);
+    return 0;
+}
