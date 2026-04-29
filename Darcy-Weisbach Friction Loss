@@ -1,0 +1,17 @@
+#include <stdio.h>
+int main() {
+    float f, L, v, D, g = 9.81, hf;
+    printf("Enter friction factor (f): ");
+    scanf("%f", &f);
+    printf("Enter pipe length (m): ");
+    scanf("%f", &L);
+    printf("Enter velocity (m/s): ");
+    scanf("%f", &v);
+    printf("Enter diameter (m): ");
+    scanf("%f", &D);
+
+    hf = (f * L * v * v) / (2 * g * D);
+
+    printf("Head loss due to friction: %.4f meters\n", hf);
+    return 0;
+}
