@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    float C, I, A, Q;
+    printf("Enter Runoff Coefficient (0.1 to 0.9): ");
+    scanf("%f", &C);
+    printf("Enter Rainfall Intensity (mm/hr): ");
+    scanf("%f", &I);
+    printf("Enter Catchment Area (Hectares): ");
+    scanf("%f", &A);
+
+    // Q = CiA / 360 (Conversion for m3/sec)
+    Q = (C * I * A) / 360.0;
+
+    printf("Peak Runoff Discharge: %.3f m^3/sec\n", Q);
+    return 0;
+}
