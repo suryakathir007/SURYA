@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    float bm_rl, bs, fs, hi;
+    int stations;
+
+    printf("Enter Benchmark RL: ");
+    scanf("%f", &bm_rl);
+    printf("Enter Backsight (BS): ");
+    scanf("%f", &bs);
+
+    hi = bm_rl + bs;
+    printf("Height of Instrument (HI): %.3f\n", hi);
+
+    printf("Enter number of Foresight points: ");
+    scanf("%d", &stations);
+
+    for(int i = 1; i <= stations; i++) {
+        printf("Enter FS for point %d: ", i);
+        scanf("%f", &fs);
+        printf("RL of point %d: %.3f\n", i, hi - fs);
+    }
+    return 0;
+}
