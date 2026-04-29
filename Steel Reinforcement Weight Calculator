@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main() {
+    float dia, length, weight;
+    printf("--- Steel Weight Calculator (kg = D^2/162 * L) ---\n");
+    printf("Enter diameter of bar (mm): ");
+    scanf("%f", &dia);
+    printf("Enter total length of bars (m): ");
+    scanf("%f", &length);
+
+    weight = (dia * dia / 162.0) * length;
+
+    printf("Total Weight of Steel: %.2f kg\n", weight);
+    return 0;
+}
