@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    float V, e, f, R;
+    printf("Enter Design Speed (km/h): ");
+    scanf("%f", &V);
+    printf("Enter Super-elevation (e): ");
+    scanf("%f", &e);
+    printf("Enter Coeff of friction (f): ");
+    scanf("%f", &f);
+
+    // R = V^2 / (127 * (e + f))
+    R = (V * V) / (127 * (e + f));
+
+    printf("Minimum Radius of Curve required: %.2f meters\n", R);
+    return 0;
+}
