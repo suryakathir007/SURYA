@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+    float EV, AC, PV;
+    printf("Earned Value (EV): ");
+    scanf("%f", &EV);
+    printf("Actual Cost (AC): ");
+    scanf("%f", &AC);
+    printf("Planned Value (PV): ");
+    scanf("%f", &PV);
+
+    float CPI = EV / AC;
+    float SPI = EV / PV;
+
+    printf("\n--- Project Status ---\n");
+    printf("Cost Performance Index (CPI): %.2f (%s)\n", CPI, (CPI < 1) ? "Over Budget" : "Under Budget");
+    printf("Schedule Performance Index (SPI): %.2f (%s)\n", SPI, (SPI < 1) ? "Behind Schedule" : "On Schedule");
+    return 0;
+}
