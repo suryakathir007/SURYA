@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    float c, Nc, q, Nq, gamma, B, Ng, qu;
+    printf("Enter Cohesion (c): ");
+    scanf("%f", &c);
+    printf("Enter Nc, Nq, Ng (factors): ");
+    scanf("%f %f %f", &Nc, &Nq, &Ng);
+    printf("Enter Unit Weight of soil (gamma): ");
+    scanf("%f", &gamma);
+    printf("Enter Depth of footing (Df): ");
+    float Df; scanf("%f", &Df);
+    printf("Enter Width of footing (B): ");
+    scanf("%f", &B);
+
+    q = gamma * Df; // Surcharge
+    qu = (c * Nc) + (q * Nq) + (0.5 * gamma * B * Ng);
+
+    printf("Ultimate Bearing Capacity (qu): %.2f kN/m2\n", qu);
+    return 0;
+}
