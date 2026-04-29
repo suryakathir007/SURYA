@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float phi, ka, kp;
+    const double PI = 3.14159265;
+    printf("Enter Angle of Internal Friction (degrees): ");
+    scanf("%f", &phi);
+
+    float phiRad = phi * (PI / 180.0);
+    ka = (1 - sin(phiRad)) / (1 + sin(phiRad));
+    kp = 1 / ka;
+
+    printf("Active Pressure Coeff (Ka): %.3f\n", ka);
+    printf("Passive Pressure Coeff (Kp): %.3f\n", kp);
+    return 0;
+}
