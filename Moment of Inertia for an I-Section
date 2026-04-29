@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    float bf, tf, dw, tw; // flange width/thick, web depth/thick
+    printf("Enter Flange Width & Thickness (mm): ");
+    scanf("%f %f", &bf, &tf);
+    printf("Enter Web Depth & Thickness (mm): ");
+    scanf("%f %f", &dw, &tw);
+
+    float overall_depth = dw + (2 * tf);
+    // I = (BH^3 / 12) - (bh^3 / 12)
+    float Ixx = (bf * pow(overall_depth, 3) / 12.0) - ((bf - tw) * pow(dw, 3) / 12.0);
+
+    printf("Moment of Inertia (Ixx): %.2e mm^4\n", Ixx);
+    return 0;
+}
