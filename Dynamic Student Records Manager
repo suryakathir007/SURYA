@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Define a structure to hold student data
+typedef struct {
+    int id;
+    char name[50];
+    float gpa;
+} Student;
+
+// Function prototypes
+void displayHeader();
+void clearBuffer();
+
+int main() {
+    int numStudents;
+    Student *records;
+    float totalGPA = 0.0;
+    FILE *filePtr;
+
+    displayHeader();
+
+    printf("Enter the number of students to register: ");
+    if (scanf("%d", &numStudents) != 1 || numStudents <= 0) {
+        printf("Invalid input. Exiting.\n");
+        return 1;
+    }
+
+    // 1. Dynamic Memory Allocation
+    records = (Student *)malloc(numStudents * sizeof(Student));
+
+    if (records == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    // 2. Data Entry Loop
+    for (int i = 0; i < numStudents; i++) {
+        printf("\n--- Student #%d ---\n", i + 1);
+        records[i].id = i + 101; // Assigning an automatic ID
+
+        printf("Enter Name: ");
+        clearBuffer(); // Clear the newline from previous scanf
+        fgets(records[i].name, 50, stdin);
+        records[i].name[strcspn(records[i].name, "\n")] = 0; // Remove trailing newline
+
+        printf("Enter GPA: ");
+        scanf("%f", &records[i].gpa);
+
+        totalGPA += records[i].gpa;
+    }
+
+    // 3. File I/O - Saving to a file
+    filePtr = fopen("student_records.txt", "w");
+    if (filePtr == NULL) {
+        printf("Error opening file for writing!\n");
+        free(records);
+        return 1;
+    }
+
+    fprintf(filePtr, "ID\tName\t\tGPA\n");
+    fprintf(filePtr, "--------------------------\n");
+
+    printf("\n--- Processing Results ---\n");
+    for (int i = 0; i < numStudents; i++) {
+        fprintf(filePtr, "%d\t%-15s\t%.2f\n", records[i].id, records[i].name, records[i].gpa);
+    }
+
+    float average = totalGPA / numStudents;
+    fprintf(filePtr, "--------------------------\n");
+    fprintf(filePtr, "Class Average GPA: %.2f\n", average);
+
+    fclose(filePtr); // Close file
+
+    // 4. Output Summary to Console
+    printf("Successfully processed %d students.\n", numStudents);
+    printf("Class Average: %.2f\n", average);
+    printf("Data has been saved to 'student_records.txt'.\n");
+
+    // 5. Memory Cleanup
+    free(records);
+    records = NULL;
+
+    return 0;
+}
+
+void displayHeader() {
+    printf("========================================\n");
+    printf("    DYNAMIC STUDENT RECORD SYSTEM       \n");
+    printf("========================================\n");
+}
+
+void clearBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
