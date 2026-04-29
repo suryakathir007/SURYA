@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main() {
+    float Mu, fck, fy, b, d, Ast;
+    printf("Enter Factored Moment (Mu) in kNm: ");
+    scanf("%f", &Mu);
+    printf("Enter fck (MPa) and fy (MPa): ");
+    scanf("%f %f", &fck, &fy);
+    printf("Enter Width (b) and Effective Depth (d) in mm: ");
+    scanf("%f %f", &b, &d);
+
+    // Simplified formula for Ast
+    float term = 1 - sqrt(1 - (4.6 * Mu * 1e6) / (fck * b * d * d));
+    Ast = (0.5 * fck / fy) * term * b * d;
+
+    printf("Required Area of Steel (Ast): %.2f mm^2\n", Ast);
+    return 0;
+}
