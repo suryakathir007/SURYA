@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float Cd, L, H, Q;
+    printf("Enter Coeff. of Discharge (Cd) [usually 0.62]: ");
+    scanf("%f", &Cd);
+    printf("Enter Length of Weir (m): ");
+    scanf("%f", &L);
+    printf("Enter Head of water over crest (m): ");
+    scanf("%f", &H);
+
+    // Q = 2/3 * Cd * L * sqrt(2g) * H^(3/2)
+    Q = (2.0/3.0) * Cd * L * sqrt(2 * 9.81) * pow(H, 1.5);
+
+    printf("Discharge (Q): %.4f m^3/s\n", Q);
+    return 0;
+}
