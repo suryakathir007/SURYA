@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float Cc, H, e0, sigma0, deltaSigma, Sc;
+    printf("Compression Index (Cc): ");
+    scanf("%f", &Cc);
+    printf("Thickness of Layer (H) (m): ");
+    scanf("%f", &H);
+    printf("Initial Void Ratio (e0): ");
+    scanf("%f", &e0);
+    printf("Initial Stress (sigma0): ");
+    scanf("%f", &sigma0);
+    printf("Stress Increase (deltaSigma): ");
+    scanf("%f", &deltaSigma);
+
+    Sc = (Cc * H / (1 + e0)) * log10((sigma0 + deltaSigma) / sigma0);
+
+    printf("Primary Consolidation Settlement: %.4f meters\n", Sc);
+    return 0;
+}
