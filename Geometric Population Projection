@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float p0, r;
+    int n;
+    printf("Initial Population: ");
+    scanf("%f", &p0);
+    printf("Average Growth Rate (%% per decade): ");
+    scanf("%f", &r);
+    printf("Number of decades in future: ");
+    scanf("%d", &n);
+
+    float pn = p0 * pow((1 + r/100), n);
+
+    printf("Projected Population after %d decades: %.0f\n", n, pn);
+    return 0;
+}
