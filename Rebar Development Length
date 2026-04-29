@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    float phi, sigma_s, tau_bd, Ld;
+    printf("Enter Bar Diameter (mm): ");
+    scanf("%f", &phi);
+    printf("Enter Stress in bar (MPa): ");
+    scanf("%f", &sigma_s);
+    printf("Enter Design Bond Stress (MPa): ");
+    scanf("%f", &tau_bd);
+
+    Ld = (phi * sigma_s) / (4 * tau_bd);
+
+    printf("Required Development Length: %.2f mm\n", Ld);
+    return 0;
+}
