@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    float totalWeight, bitPercent, aggrWeight, bitWeight;
+    printf("Enter Total Weight of Asphalt Mix (kg): ");
+    scanf("%f", &totalWeight);
+    printf("Enter Bitumen Content (%%): ");
+    scanf("%f", &bitPercent);
+
+    bitWeight = (bitPercent / 100.0) * totalWeight;
+    aggrWeight = totalWeight - bitWeight;
+
+    printf("\n--- Mix Proportions ---\n");
+    printf("Weight of Bitumen: %.2f kg\n", bitWeight);
+    printf("Weight of Aggregates: %.2f kg\n", aggrWeight);
+    return 0;
+}
