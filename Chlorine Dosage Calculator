@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    float flow, dosage, percent;
+    printf("Enter Water Flow Rate (Million Liters per Day - MLD): ");
+    scanf("%f", &flow);
+    printf("Enter Required Dosage (mg/L): ");
+    scanf("%f", &dosage);
+    printf("Enter %% of Chlorine in Bleaching Powder (e.g., 30): ");
+    scanf("%f", &percent);
+
+    float pureChlorinePerDay = flow * dosage; // kg/day
+    float bleachingPowder = (pureChlorinePerDay * 100) / percent;
+
+    printf("Total Bleaching Powder Required: %.2f kg/day\n", bleachingPowder);
+    return 0;
+}
