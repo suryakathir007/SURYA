@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+// Structure to define Beam Properties
+typedef struct {
+    char label[30];
+    double width;  // in mm
+    double depth;  // in mm
+    double span;   // in meters
+    double load;   // Uniformly Distributed Load (kN/m)
+} Beam;
+
+// Function Prototypes
+double calculateInertia(double b, double h);
+double calculateMaxMoment(double w, double L);
+void generateReport(Beam b, double I, double M, double stress);
+
+int main() {
+    Beam myBeam;
+    double inertia, maxMoment, maxStress, distanceToNeutralAxis;
+
+    printf("--- Structural Beam Analysis Tool ---\n");
+
+    // Input Beam Data
+    printf("Enter Beam Label (e.g., B1): ");
+    scanf("%s", myBeam.label);
+    printf("Enter Width (mm): ");
+    scanf("%lf", &myBeam.width);
+    printf("Enter Depth (mm): ");
+    scanf("%lf", &myBeam.depth);
+    printf("Enter Span Length (m): ");
+    scanf("%lf", &myBeam.span);
+    printf("Enter Uniform Load (kN/m): ");
+    scanf("%lf", &myBeam.load);
+
+    // 1. Calculate Moment of Inertia (I = bh^3 / 12)
+    inertia = calculateInertia(myBeam.width, myBeam.depth);
+
+    // 2. Calculate Max Bending Moment (M = wL^2 / 8 for simply supported)
+    maxMoment = calculateMaxMoment(myBeam.load, myBeam.span);
+
+    // 3. Calculate Bending Stress (sigma = M * y / I)
+    // Convert M to N-mm: maxMoment * 10^6
+    // y = depth / 2
+    distanceToNeutralAxis = myBeam.depth / 2.0;
+    maxStress = (maxMoment * 1000000.0 * distanceToNeutralAxis) / inertia;
+
+    // Display Results to Console
+    printf("\n--- Analysis Results for %s ---\n", myBeam.label);
+    printf("Moment of Inertia: %.2f mm^4\n", inertia);
+    printf("Max Bending Moment: %.2f kN-m\n", maxMoment);
+    printf("Maximum Bending Stress: %.2f MPa (N/mm^2)\n", maxStress);
+
+    // Generate File Report
+    generateReport(myBeam, inertia, maxMoment, maxStress);
+
+    return 0;
+}
+
+double calculateInertia(double b, double h) {
+    return (b * pow(h, 3)) / 12.0;
+}
+
+double calculateMaxMoment(double w, double L) {
+    return (w * pow(L, 2)) / 8.0;
+}
+
+void generateReport(Beam b, double I, double M, double stress) {
+    FILE *fptr;
+    fptr = fopen("Beam_Report.txt", "w");
+
+    if (fptr == NULL) {
+        printf("Error: Could not save report.\n");
+        return;
+    }
+
+    fprintf(fptr, "STRUCTURAL DESIGN REPORT\n");
+    fprintf(fptr, "========================\n");
+    fprintf(fptr, "Beam Label: %s\n", b.label);
+    fprintf(fptr, "Dimensions: %.1fmm x %.1fmm\n", b.width, b.depth);
+    fprintf(fptr, "Span      : %.2f m\n", b.span);
+    fprintf(fptr, "Applied Load: %.2f kN/m\n", b.load);
+    fprintf(fptr, "------------------------\n");
+    fprintf(fptr, "Calculated Moment of Inertia: %.2f mm^4\n", I);
+    fprintf(fptr, "Calculated Max Moment     : %.2f kN-m\n", M);
+    fprintf(fptr, "Resulting Max Stress      : %.2f MPa\n", stress);
+    fprintf(fptr, "------------------------\n");
+    
+    if (stress > 15.0) { // Example threshold for concrete grade
+        fprintf(fptr, "WARNING: Stress exceeds typical allowable limit for low-grade concrete!\n");
+    } else {
+        fprintf(fptr, "STATUS: Stress within acceptable safety limits.\n");
+    }
+
+    fclose(fptr);
+    printf("\nReport successfully saved to 'Beam_Report.txt'\n");
+}
