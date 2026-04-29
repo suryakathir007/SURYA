@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float v, t, f, G, ssd;
+    printf("--- Stopping Sight Distance (SSD) ---\n");
+    printf("Enter speed of vehicle (km/hr): ");
+    scanf("%f", &v);
+    printf("Enter perception-reaction time (sec) [Std: 2.5]: ");
+    scanf("%f", &t);
+    printf("Enter longitudinal friction [Std: 0.35]: ");
+    scanf("%f", &f);
+    printf("Enter gradient (decimal, e.g., 0.02 for 2%%): ");
+    scanf("%f", &G);
+
+    // Convert km/hr to m/s
+    float V = v / 3.6;
+    // SSD = Lag Distance + Braking Distance
+    ssd = (V * t) + (V * V) / (2 * 9.81 * (f + G));
+
+    printf("Required SSD: %.2f meters\n", ssd);
+    return 0;
+}
