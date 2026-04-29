@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float db1, db2, total;
+    printf("Enter first noise level (dB): ");
+    scanf("%f", &db1);
+    printf("Enter second noise level (dB): ");
+    scanf("%f", &db2);
+
+    // Total dB = 10 * log10(10^(L1/10) + 10^(L2/10))
+    total = 10 * log10(pow(10, db1/10.0) + pow(10, db2/10.0));
+
+    printf("Combined Noise Level: %.2f dB\n", total);
+    return 0;
+}
