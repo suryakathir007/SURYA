@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    float LL, PL, PI, aLine;
+    printf("Enter Liquid Limit (LL): ");
+    scanf("%f", &LL);
+    printf("Enter Plastic Limit (PL): ");
+    scanf("%f", &PL);
+
+    PI = LL - PL;
+    aLine = 0.73 * (LL - 20);
+
+    printf("Plasticity Index (PI): %.2f\n", PI);
+    if (PI > aLine && LL > 20)
+        printf("Classification: Clay (Above A-Line)\n");
+    else
+        printf("Classification: Silt/Organic (Below A-Line)\n");
+
+    return 0;
+}
