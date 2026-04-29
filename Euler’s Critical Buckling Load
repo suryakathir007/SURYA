@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double E, I, L, Pcr;
+    int choice;
+    const double PI = 3.1415926535;
+
+    printf("Enter Modulus of Elasticity E (GPa): ");
+    scanf("%lf", &E);
+    printf("Enter Moment of Inertia I (mm^4): ");
+    scanf("%lf", &I);
+    printf("Enter Length (m): ");
+    scanf("%lf", &L);
+
+    printf("End Conditions:\n1. Both Ends Pinned\n2. Both Ends Fixed\n3. One Fixed, One Free\nSelect (1-3): ");
+    scanf("%d", &choice);
+
+    double Le; // Effective length
+    if(choice == 1) Le = L;
+    else if(choice == 2) Le = 0.5 * L;
+    else Le = 2.0 * L;
+
+    Pcr = (PI * PI * (E * 1e3) * I) / pow(Le * 1e3, 2); // Result in Newtons
+    printf("Critical Buckling Load: %.2f kN\n", Pcr / 1000.0);
+
+    return 0;
+}
