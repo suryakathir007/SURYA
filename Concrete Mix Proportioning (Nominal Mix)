@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main() {
+    float volume, c, s, a, totalParts;
+    printf("Enter required wet volume of concrete (m3): ");
+    scanf("%f", &volume);
+    printf("Enter Mix Ratio (Cement:Sand:Agg) e.g., 1 2 4: ");
+    scanf("%f %f %f", &c, &s, &a);
+
+    float dryVol = volume * 1.54; // Conversion factor for dry volume
+    totalParts = c + s + a;
+
+    printf("\nMaterials Required:\n");
+    printf("Cement: %.2f m3\n", (c / totalParts) * dryVol);
+    printf("Sand: %.2f m3\n", (s / totalParts) * dryVol);
+    printf("Aggregate: %.2f m3\n", (a / totalParts) * dryVol);
+    return 0;
+}
