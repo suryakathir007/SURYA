@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    float L, P, a, Ra, Rb;
+    printf("Enter Span Length (L): ");
+    scanf("%f", &L);
+    printf("Enter Point Load (P): ");
+    scanf("%f", &P);
+    printf("Enter distance of load from Left support (a): ");
+    scanf("%f", &a);
+
+    // Sum of moments at A = 0 => Rb*L - P*a = 0
+    Rb = (P * a) / L;
+    Ra = P - Rb;
+
+    printf("\nSupport Reactions:\n");
+    printf("Ra (Left): %.2f\n", Ra);
+    printf("Rb (Right): %.2f\n", Rb);
+    return 0;
+}
