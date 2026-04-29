@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    int slump;
+    printf("Enter measured Slump value (mm): ");
+    scanf("%d", &slump);
+
+    printf("Workability: ");
+    if (slump >= 0 && slump <= 25) printf("Very Low (Road Construction)\n");
+    else if (slump <= 50) printf("Low (Mass Concrete)\n");
+    else if (slump <= 100) printf("Medium (Normal Reinforced Concrete)\n");
+    else if (slump <= 175) printf("High (Pumped Concrete)\n");
+    else printf("Collapse (Very High - Check Mix Design)\n");
+
+    return 0;
+}
